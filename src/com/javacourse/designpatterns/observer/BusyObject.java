@@ -19,18 +19,13 @@ public class BusyObject {
         observers.remove(observer);
     }
 
-    public void notifyObservers() {
-        observers.forEach(IObserver::addHistoryMessage);
-        observers.forEach(IObserver::updateChildren);
-    }
-
     public void updateObjectAndDependencies(String name, LocalDate creationDate) {
         this.name = name;
         if (creationDate.isBefore(this.creationDate)) {
             throw new IllegalArgumentException("The date can't be set before the original creation date");
         }
         this.creationDate = creationDate;
-        notifyObservers();
+        observers.forEach(IObserver::receiveNotification);
     }
 
     public Integer getId() {

@@ -26,20 +26,18 @@ public class DesignPatterns {
 
         CommandDevice commandDevice = new CommandDevice();
 
-        commandDevice.setCommand(new TurnLightsOff(lights));
-        commandDevice.pressButton();
-
-        commandDevice.setCommand(new TurnVolumeUp(audio));
-        commandDevice.pressButton();
+        commandDevice.pressButton(new TurnLightsOff(lights));
+        commandDevice.pressButton(new TurnVolumeUp(audio));
 
         // Strategy pattern
         /** STRATEGY = HOW SOMETHING SHOULD BE DONE  **/
         StrategyContext strategyContext = new StrategyContext();
 
-        strategyContext.setStrategy(new FirstNameFirst());
+        strategyContext.setStrategy((firstName, lastName) -> System.out.println(firstName + " " + lastName ));
+//        strategyContext.setStrategy(new FirstNameFirst());
         strategyContext.execute("Alex", "Adam");
 
-        strategyContext.setStrategy(new LastNameFirst());
+        strategyContext.setStrategy((firstName, lastName) -> System.out.println(lastName + " " + firstName));
         strategyContext.execute("Alex", "Adam");
 
         // Facade pattern

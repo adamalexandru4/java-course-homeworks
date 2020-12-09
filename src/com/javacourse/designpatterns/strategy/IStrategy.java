@@ -1,6 +1,7 @@
 package com.javacourse.designpatterns.strategy;
 
-public interface IStrategy {
+@FunctionalInterface
+public interface IStrategy{
 
     void execute(String firstName, String lastName);
 }
